@@ -20,7 +20,7 @@ public:
     TabHash(const int &tamanhoTabela) : tabela(0),
                                         tamanhoTabela(0)
     {
-        if (tamanhoTabela <= 0 || colisoes <= 0)
+        if (tamanhoTabela <= 0)
         {
             throw QString("Nao foi possivel, tamanho invalido ou colisao invalida");
         }

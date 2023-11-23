@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "tabela.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -26,5 +27,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    Tabela *tabela;
 };
 #endif // MAINWINDOW_H

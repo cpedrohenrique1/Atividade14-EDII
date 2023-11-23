@@ -3,13 +3,13 @@
 
 #include "QTableWidget"
 #include "QHeaderView"
-#include "tabhash.h"
+#include "tabhashgrafo.h"
 
 class Tabela
 {
 private:
     QTableWidget *tabela;
-    TabHash *vetor;
+    TabHashGrafo *vetor;
     int tamanho_tabela;
 
 public:
@@ -19,10 +19,9 @@ public:
     void start();
     void limpar();
     void atualizar();
-    QString buscaElemento(const int &matricula);
-    void inserirElemento(const int &matricula, const QString &nomeCompleto);
-    void alterarElemento(const int &matricula, const QString &nomeCompleto);
-    void removerElemento(const int &matricula);
+    void inserirElemento(const int &vertice, const int& peso);
+    void alterarElemento(const int &vertice, const int& peso);
+    void removerElemento(const int &vertice);
     int getTamanhoTabela() const;
 };
 

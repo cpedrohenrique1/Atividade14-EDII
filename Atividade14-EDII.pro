@@ -9,16 +9,20 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    grafo.cpp \
     main.cpp \
     mainwindow.cpp \
-    tabela.cpp
+    tabela.cpp \
+    tabhashgrafo.cpp
 
 HEADERS += \
+    grafo.h \
     lista.h \
     mainwindow.h \
     no.h \
     tabela.h \
-    tabhash.h
+    tabhash.h \
+    tabhashgrafo.h
 
 FORMS += \
     mainwindow.ui
