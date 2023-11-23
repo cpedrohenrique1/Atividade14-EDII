@@ -17,7 +17,7 @@ Tabela::Tabela(QTableWidget *parent, const int &tamanho) : tabela(0),
     this->tabela = parent;
     try
     {
-        vetor = new TabHash<int>(tamanho);
+        vetor = new TabHashGrafo(tamanho);
     }
     catch (const std::bad_alloc &e)
     {
@@ -44,14 +44,9 @@ void Tabela::start()
 {
     if (!tabela)
         throw QString("tabela nao localizada {start}");
-
-    tabela->setColumnCount(2);
-    QStringList cabecalho = {"Matricula", "Nome Completo"};
-    tabela->setHorizontalHeaderLabels(cabecalho);
-    tabela->setColumnWidth(0, 100); // Matricula
-    tabela->setColumnWidth(1, 650); // Nome
+    tabela->setColumnCount(0);
     tabela->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    tabela->verticalHeader()->setVisible(false);
+    // tabela->verticalHeader()->setVisible(false);
 }
 
 void Tabela::limpar()
@@ -74,79 +69,46 @@ void Tabela::atualizar()
 
     limpar();
 
-    int j = 0;
     for (int i = 0; i < tamanho_tabela; ++i)
     {
-        QString nomeCompleto = vetor->Consultar(i).getNome();
-        if (nomeCompleto == "")
-        {
-            continue;
-        }
-        tabela->insertRow(j);
-        tabela->setItem(j, 0, new QTableWidgetItem(QString::number(i)));
-        tabela->setItem(j, 1, new QTableWidgetItem(nomeCompleto));
-        ++j;
+        tabela->insertRow(i);
+        tabela->setItem(i, 0, new QTableWidgetItem(QString::number(i)));
+        tabela->setItem(i, 1, new QTableWidgetItem(nomeCompleto));
+        vetor.
     }
 }
 
-QString Tabela::buscaElemento(const int &matricula)
+void Tabela::inserirElemento(const int &vertice, const int& peso)
 {
-    if (matricula >= tamanho_tabela || matricula < 0)
-        throw QString("Numero invalido, tem que ser entre 0 e " + QString::number(tamanho_tabela - 1));
-
-    if (!vetor)
-        throw QString("vetor nao localizado {buscaelemento}");
-    return vetor->Consultar(matricula).getNome();
-}
-
-void Tabela::inserirElemento(const int &matricula, const QString &nomeCompleto)
-{
-    if (matricula < 0 || matricula >= tamanho_tabela)
-        throw QString("numero de matricula nao condiz com os padroes {inserirElemento}");
-
-    if (nomeCompleto.isEmpty())
-        throw QString("Nome nao pode estar vazio, se deseja remover use o botao 'remover' {inserirElemento}");
+    if (vertice < 0 || vertice >= tamanho_tabela)
+        throw QString("numero de vertice nao condiz com os padroes {inserirElemento}");
 
     if (!vetor)
         throw QString("vetor nao localizado {inserirElemento}");
 
-    if (vetor->Consultar(matricula).getNome() != "")
-        throw QString("Este elemento ja existe, se deseja alterar, use o botao 'alterar' {inserirElemento}");
-    Aluno aluno(matricula, nomeCompleto.toUpper());
-    vetor->IncluirDados(aluno);
+    vetor->IncluirDados(Grafo(peso, vertice));
     atualizar();
 }
 
-void Tabela::alterarElemento(const int &matricula, const QString &nomeCompleto)
+void Tabela::alterarElemento(const int &vertice, const int& peso)
 {
-    if (matricula < 0 || matricula >= tamanho_tabela)
-        throw QString("numero de matricula nao condiz com os padroes {alterarElemento}");
-
-    if (nomeCompleto.isEmpty())
-        throw QString("Nome nao pode estar vazio, se deseja remover use o botao remover {alterarElemento}");
+    if (vertice < 0 || vertice >= tamanho_tabela)
+        throw QString("numero de vertice nao condiz com os padroes {alterarElemento}");
 
     if (!vetor)
         throw QString("vetor nao localizado {alterarElemento}");
 
-    if (vetor->Consultar(matricula).getNome() == "")
-    {
-        throw QString("Elemento nao existe, se deseja adicionar use o botao 'inserir' {alterarElemento}");
-    }
-    else
-    {
-        vetor->ExcluirDados(matricula);
-    }
-    Aluno aluno(matricula, nomeCompleto.toUpper());
-    vetor->IncluirDados(aluno);
+    vetor->ExcluirDados(vertice);
+    vetor->IncluirDados(Grafo(peso, vertice));
     atualizar();
 }
 
-void Tabela::removerElemento(const int &matricula)
+void Tabela::removerElemento(const int &vertice)
 {
     if (!vetor)
         throw QString("vetor nao localizado {removerElemento}");
-    if (matricula < 0 || matricula >= tamanho_tabela)
-        throw QString("numero de matricula nao condiz com os padroes {removerElemento}");
-    vetor->ExcluirDados(matricula);
+    if (vertice < 0 || vertice >= tamanho_tabela)
+        throw QString("numero de vertice nao condiz com os padroes {removerElemento}");
+    vetor->ExcluirDados(vertice);
     atualizar();
 }
