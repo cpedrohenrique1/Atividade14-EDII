@@ -17,7 +17,7 @@ Tabela::Tabela(QTableWidget *parent, const int &tamanho) : tabela(0),
     this->tabela = parent;
     try
     {
-        vetor = new TabHash(tamanho);
+        vetor = new TabHash<int>(tamanho);
     }
     catch (const std::bad_alloc &e)
     {
