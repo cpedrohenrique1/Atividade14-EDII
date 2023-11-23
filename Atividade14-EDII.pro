@@ -10,12 +10,16 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    tabela.cpp \
+    tabhash.cpp
 
 HEADERS += \
     lista.h \
     mainwindow.h \
-    no.h
+    no.h \
+    tabela.h \
+    tabhash.h
 
 FORMS += \
     mainwindow.ui
