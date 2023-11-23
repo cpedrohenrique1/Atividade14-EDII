@@ -19,3 +19,21 @@ void MainWindow::on_pushButton_criar_clicked()
 
 }
 
+
+void MainWindow::on_pushButton_incluir_clicked()
+{
+
+}
+
+
+void MainWindow::on_pushButton_alterar_clicked()
+{
+
+}
+
+
+void MainWindow::on_pushButton_excluir_clicked()
+{
+
+}
+
