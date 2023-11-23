@@ -3,16 +3,18 @@
 
 #include "QTableWidget"
 #include "QHeaderView"
+#include "tabhash.h"
 
 class Tabela
 {
 private:
     QTableWidget *tabela;
+    TabHash *vetor;
     int tamanho_tabela;
 
 public:
     Tabela();
-    Tabela(QTableWidget *parent, const int &tamanho, const int &colisoes);
+    Tabela(QTableWidget *parent, const int &tamanho);
     ~Tabela();
     void start();
     void limpar();

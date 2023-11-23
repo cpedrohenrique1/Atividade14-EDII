@@ -17,14 +17,14 @@ public:
     {
     }
 
-    TabHash(const int &tamanhoTabela, const int &colisoes) : tabela(0),
-                                                             tamanhoTabela(0)
+    TabHash(const int &tamanhoTabela) : tabela(0),
+                                        tamanhoTabela(0)
     {
         if (tamanhoTabela <= 0 || colisoes <= 0)
         {
             throw QString("Nao foi possivel, tamanho invalido ou colisao invalida");
         }
-        this->tamanhoTabela = calcularNPrimo(tamanhoTabela, colisoes);
+        this->tamanhoTabela = tamanhoTabela;
         try
         {
             tabela = new Lista<L> *[this->tamanhoTabela];
@@ -71,7 +71,6 @@ public:
             throw QString("Tabela nao alocada");
         }
         int chave = getChave(entrada);
-        chave %= tamanhoTabela;
         if (chave >= tamanhoTabela)
         {
             throw QString("Chave invalida");
@@ -85,8 +84,6 @@ public:
         {
             throw QString("Tabela nao alocada");
         }
-        int temp = chave;
-        chave %= tamanhoTabela;
         if (chave < 0 || chave >= tamanhoTabela)
         {
             throw QString("Chave invalida");
@@ -113,8 +110,6 @@ public:
         {
             throw QString("Chave invalida");
         }
-        int temp = chave;
-        chave %= tamanhoTabela;
         if (chave >= tamanhoTabela)
         {
             throw QString("Chave invalida");
@@ -122,39 +117,13 @@ public:
         NO<L> *iterator = tabela[chave]->acessarInicio();
         for (int i = 0; i < tabela[chave]->getQuantidadeElementos(); ++i)
         {
-            if (getChave(iterator->getDado()) == temp)
+            if (getChave(iterator->getDado()) == chave)
             {
                 return iterator->getDado();
             }
             iterator = iterator->getProximo();
         }
         return L();
-    }
-
-    int calcularNPrimo(const int &entrada, const int &colisoes)
-    {
-        if (entrada <= 0)
-        {
-            throw QString("Tamanho invalido");
-        }
-        if (colisoes == 0)
-        {
-            throw QString("Nao foi possivel dividir por 0");
-        }
-        int divisao = entrada / colisoes;
-        int max = 0;
-        for (int i = 2; i <= entrada && max < divisao; ++i)
-        {
-            bool div = false;
-            for (int j = 2; j <= sqrt(i) && !div; ++j)
-                if (i % j == 0)
-                    div = true;
-            if (!div)
-            {
-                max = i;
-            }
-        }
-        return max;
     }
 };
 

@@ -1,24 +1,23 @@
 #include "tabela.h"
 
 Tabela::Tabela() : tabela(0),
+                   vetor(0),
                    tamanho_tabela(0)
-{
-}
+{}
 
-Tabela::Tabela(QTableWidget *parent, const int &tamanho, const int &colisoes) : tabela(0),
-                                                                                tamanho_tabela(0)
+Tabela::Tabela(QTableWidget *parent, const int &tamanho) : tabela(0),
+                                                           vetor(0),
+                                                           tamanho_tabela(0)
 {
     if (!parent)
         throw QString("tabela nao criada");
     if (tamanho <= 0)
         throw QString("tamanho invalido");
-    if (colisoes <= 0)
-        throw QString("numero de colisoes invalido");
     this->tamanho_tabela = tamanho;
     this->tabela = parent;
     try
     {
-        // vetor = new TabHashAluno(tamanho, colisoes);
+        vetor = new TabHash(tamanho);
     }
     catch (const std::bad_alloc &e)
     {
@@ -79,7 +78,8 @@ void Tabela::atualizar()
     for (int i = 0; i < tamanho_tabela; ++i)
     {
         QString nomeCompleto = vetor->Consultar(i).getNome();
-        if (nomeCompleto == ""){
+        if (nomeCompleto == "")
+        {
             continue;
         }
         tabela->insertRow(j);
