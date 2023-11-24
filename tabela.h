@@ -3,25 +3,27 @@
 
 #include "QTableWidget"
 #include "QHeaderView"
-#include "tabhashgrafo.h"
+#include "tabhashaluno.h"
 
 class Tabela
 {
 private:
     QTableWidget *tabela;
-    TabHashGrafo *vetor;
+    TabHashAluno *tabela_hash;
     int tamanho_tabela;
 
 public:
     Tabela();
-    Tabela(QTableWidget *parent, const int &tamanho);
+    Tabela(QTableWidget *parent, const int &tamanho, const int &colisoes);
     ~Tabela();
     void start();
     void limpar();
     void atualizar();
-    void inserirElemento(const int &vertice, const int& peso);
-    void alterarElemento(const int &vertice, const int& peso);
-    void removerElemento(const int &vertice);
+    QString buscaElemento(const int &matricula);
+    void inserirElemento(const int &matricula, const QString &nomeCompleto);
+    void alterarElemento(const int &matricula, const QString &nomeCompleto);
+    void removerElemento(const int &matricula);
+    TabHashAluno *getVetor() const;
     int getTamanhoTabela() const;
 };
 

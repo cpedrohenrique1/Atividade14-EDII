@@ -12,8 +12,7 @@ SOURCES += \
     grafo.cpp \
     main.cpp \
     mainwindow.cpp \
-    tabela.cpp \
-    tabhashgrafo.cpp
+    tabela.cpp
 
 HEADERS += \
     grafo.h \
@@ -21,8 +20,7 @@ HEADERS += \
     mainwindow.h \
     no.h \
     tabela.h \
-    tabhash.h \
-    tabhashgrafo.h
+    tabhash.h
 
 FORMS += \
     mainwindow.ui
