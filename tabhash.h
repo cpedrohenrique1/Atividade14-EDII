@@ -14,14 +14,15 @@ protected:
 
 public:
     TabHash() : tabela(0),
-                colisoes(0),
-                tamanhoTabela(0)
+                tamanhoTabela(0),
+                colisoes(0)
+
     {
     }
 
     TabHash(const int &tamanhoTabela, const int &colisoes) : tabela(0),
-                                                             colisoes(0),
-                                                             tamanhoTabela(0)
+                                                             tamanhoTabela(0),
+                                                             colisoes(0)
     {
         if (tamanhoTabela <= 0 || colisoes <= 0)
         {

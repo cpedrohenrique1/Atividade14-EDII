@@ -48,11 +48,12 @@ void Tabela::start()
 {
     if (!tabela)
         throw QString("tabela nao localizada {start}");
-    tabela->setColumnCount(tabela_hash->getColisoes() + 1);
-    tabela->setColumnWidth(0, 10);
-    tabela->setColumnWidth(1, 300);
-    tabela->setColumnWidth(2, 300);
-    tabela->setColumnWidth(3, 300);
+    int colunas = tabela_hash->getColisoes() + 1;
+    tabela->setColumnCount(colunas);
+    for (int i = 1; i < colunas; ++i)
+    {
+        tabela->setColumnWidth(i, 300);
+    }
     tabela->setEditTriggers(QAbstractItemView::NoEditTriggers);
     tabela->verticalHeader()->setVisible(false);
 }
@@ -81,9 +82,9 @@ void Tabela::atualizar()
     for (int i = 0; i  < tamanho_tabela; ++i){
         tabela->insertRow(i);
         tabela->setItem(i, 0, new QTableWidgetItem(QString::number(i)));
-        for (int j = 1; j < vetor[i]->getQuantidadeElementos() + 1; ++j){
-            Aluno aluno = vetor[i]->acessarPosicao(j - 1);
-            tabela->setItem(i, j, new QTableWidgetItem(QString::number(aluno.getChave()) + "; " + aluno.getNome()));
+        for (int j = 0; j < vetor[i]->getQuantidadeElementos(); ++j){
+            Aluno aluno = vetor[i]->acessarPosicao(j);
+            tabela->setItem(i, j + 1, new QTableWidgetItem(QString::number(aluno.getChave()) + "; " + aluno.getNome()));
         }
     }
 }
