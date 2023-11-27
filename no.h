@@ -24,9 +24,9 @@ public:
     {
     }
 
-    L getDado() const
+    L* getDado()
     {
-        return dado;
+        return &dado;
     }
 
     void setDado(const L &newDado)
