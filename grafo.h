@@ -13,7 +13,7 @@ private:
 public:
     Grafo();
     Grafo(const int& n_vertices);
-    void setPeso(const int& vertice1, const int& vertice2);
+    void setPeso(const int& vertice1, const int& vertice2, const int& peso);
     int getPeso(const int& vertice1, const int& vertice2);
     int getNVertices()const;
     ~Grafo();
