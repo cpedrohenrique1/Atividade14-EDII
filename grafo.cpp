@@ -73,6 +73,10 @@ int Grafo::getNVertices() const
     return n_vertices;
 }
 
+Lista<NoGrafo>** Grafo::getLista()const{
+    return lista;
+}
+
 Grafo::~Grafo()
 {
     if (lista)
