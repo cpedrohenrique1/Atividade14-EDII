@@ -71,11 +71,11 @@ public:
         {
             quantidadeElementos = 0;
             inicio = fim = 0;
-            L valor = aux->getDado();
+            L valor = *aux->getDado();
             delete aux;
             return valor;
         }
-        L valor = inicio->getDado();
+        L valor = *inicio->getDado();
         inicio = inicio->getProximo();
         inicio->setAnterior(0);
         delete aux;
@@ -120,7 +120,7 @@ public:
             return retirarInicio();
         }
         NO<L> *aux = fim;
-        L valor = fim->getDado();
+        L valor = *fim->getDado();
         fim = fim->getAnterior();
         fim->setProximo(0);
         delete aux;
@@ -242,7 +242,7 @@ public:
         NO<L> *proximo = aux->getProximo();
         anterior->setProximo(proximo);
         proximo->setAnterior(anterior);
-        L valor = aux->getDado();
+        L valor = *aux->getDado();
         delete aux;
         --quantidadeElementos;
         return valor;

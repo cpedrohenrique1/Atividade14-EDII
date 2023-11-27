@@ -1,11 +1,12 @@
 #include "grafo.h"
 
-Grafo::Grafo() : n_vertices(0),
-                 lista(0)
+Grafo::Grafo() : lista(0),
+    n_vertices(0)
+
 {
 }
-Grafo::Grafo(const int &n_vertices) : n_vertices(0),
-                                      lista(0)
+Grafo::Grafo(const int &n_vertices) : lista(0),
+    n_vertices(0)
 {
     if (n_vertices <= 0)
     {
