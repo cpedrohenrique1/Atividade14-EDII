@@ -65,11 +65,13 @@ void Grafo::setAresta(const int &vertice1, const int &vertice2, const int &peso)
         no->setPeso(peso);
         return;
     }
-    lista[vertice1]->inserirInicio(NoGrafo(vertice2, peso));
-    lista[vertice2]->inserirInicio(NoGrafo(vertice1, peso));
+    lista[vertice1 - 1]->inserirInicio(NoGrafo(vertice2, peso));
+    lista[vertice2 - 1]->inserirInicio(NoGrafo(vertice1, peso));
 }
 
-void Grafo::removerAresta(const int& vertice1, const int& vertice2){
+void Grafo::removerAresta(int vertice1, int vertice2){
+    --vertice1;
+    --vertice2;
     if ((vertice1 < 0 || vertice1 > n_vertices) || (vertice2 < 0 || vertice2 > n_vertices))
     {
         throw QString("Vertice nao existe");

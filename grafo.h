@@ -16,7 +16,7 @@ public:
     NoGrafo* getNoExistente(int vertice1, int vertice2);
     void setAresta(const int& vertice1, const int& vertice2, const int& peso);
     int getNVertices()const;
-    void removerAresta(const int& vertice1, const int& vertice2);
+    void removerAresta(int vertice1, int vertice2);
     Lista<NoGrafo>** getLista()const;
     ~Grafo();
 };

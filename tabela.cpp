@@ -70,7 +70,7 @@ void Tabela::atualizar()
         {
             if (max < j){
                 tabela->insertColumn(++max);
-                tabela->setColumnWidth(max, 300);
+                tabela->setColumnWidth(max, 30);
             }
             NoGrafo *no = vetor[i]->acessarPosicao(j);
             tabela->setItem(i, j, new QTableWidgetItem(QString::number(no->getVertice()) + ", " + QString::number(no->getPeso())));
