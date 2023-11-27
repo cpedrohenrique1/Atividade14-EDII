@@ -21,6 +21,10 @@ Grafo::Grafo(const int &n_vertices) :   n_vertices(0),
     }
 }
 
+int Grafo::getNVertices()const{
+    return n_vertices;
+}
+
 Grafo::~Grafo(){
     if (lista){
         for (int i = 0; i < n_vertices; ++i){
