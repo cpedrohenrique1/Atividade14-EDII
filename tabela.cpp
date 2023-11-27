@@ -73,7 +73,7 @@ void Tabela::atualizar()
                 tabela->setColumnWidth(max, 300);
             }
             NoGrafo *no = vetor[i]->acessarPosicao(j);
-            tabela->setItem(i, j, new QTableWidgetItem(QString::number(no->getVertice()) + " " + QString::number(no->getPeso())));
+            tabela->setItem(i, j, new QTableWidgetItem(QString::number(no->getVertice()) + ", " + QString::number(no->getPeso())));
         }
     }
 }

@@ -49,7 +49,7 @@ NoGrafo *Grafo::getNoExistente(int vertice1, int vertice2)
 
 void Grafo::setAresta(const int &vertice1, const int &vertice2, const int &peso)
 {
-    if ((vertice1 < 0 || vertice1 > n_vertices) || (vertice2 < 0 || vertice2 > n_vertices))
+    if ((vertice1 - 1 < 0 || vertice1 - 1 > n_vertices) || (vertice2 - 1 < 0 || vertice2 - 1 > n_vertices))
     {
         throw QString("Vertice nao existe");
     }

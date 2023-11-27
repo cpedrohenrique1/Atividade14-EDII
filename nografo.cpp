@@ -5,11 +5,10 @@ NoGrafo::NoGrafo() : vertice(0),
 {
 }
 
-NoGrafo::NoGrafo(int vertice, const int &peso) : vertice(0),
-                                                 peso(0)
+NoGrafo::NoGrafo(const int &vertice, const int &peso) : vertice(0),
+                                                        peso(0)
 {
-    --vertice;
-    if (vertice < 0)
+    if (vertice <= 0)
     {
         throw QString("Vertice negativo");
     }
