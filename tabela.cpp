@@ -39,7 +39,7 @@ void Tabela::start()
     if (!tabela)
         throw QString("tabela nao localizada {start}");
     tabela->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    tabela->verticalHeader()->setVisible(false);
+    // tabela->verticalHeader()->setVisible(false);
 }
 
 void Tabela::limpar()
@@ -65,7 +65,6 @@ void Tabela::atualizar()
     for (int i = 0; i < grafo->getNVertices(); ++i)
     {
         tabela->insertRow(i);
-        tabela->setItem(i, 0, new QTableWidgetItem(QString::number(i)));
         int max = -1;
         for (int j = 0; j < vetor[i]->getQuantidadeElementos(); ++j)
         {
@@ -74,7 +73,7 @@ void Tabela::atualizar()
                 tabela->setColumnWidth(max, 300);
             }
             NoGrafo *no = vetor[i]->acessarPosicao(j);
-            tabela->setItem(i, j + 1, new QTableWidgetItem(QString::number(no->getVertice()) + " " + QString::number(no->getPeso())));
+            tabela->setItem(i, j, new QTableWidgetItem(QString::number(no->getVertice()) + " " + QString::number(no->getPeso())));
         }
     }
 }

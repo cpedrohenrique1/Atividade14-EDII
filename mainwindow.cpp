@@ -16,6 +16,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_criar_clicked()
 {
+    if (tabela)
+        delete tabela;
     bool ok;
     int n_vertices = ui->lineEdit_vertices->text().toInt(&ok);
     if (ok){
@@ -47,6 +49,9 @@ void MainWindow::on_pushButton_incluir_clicked()
         int peso = ui->lineEdit_peso->text().toInt(&ok);
         if (ok){
             try{
+                if (!tabela){
+                    throw QString("tabela nao criada");
+                }
                 tabela->inserirAresta(vertice1, vertice2, peso);
             }catch(QString& e){
                 QMessageBox::critical(this, "Erro", e);
@@ -77,6 +82,9 @@ void MainWindow::on_pushButton_alterar_clicked()
         int peso = ui->lineEdit_peso->text().toInt(&ok);
         if (ok){
             try{
+                if (!tabela){
+                    throw QString("tabela nao criada");
+                }
                 tabela->alterarAresta(vertice1, vertice2, peso);
             }catch(QString& e){
                 QMessageBox::critical(this, "Erro", e);
@@ -106,6 +114,9 @@ void MainWindow::on_pushButton_excluir_clicked()
             throw QString("n° vertices invalido");
         }
         if (ok){
+            if (!tabela){
+                throw QString("tabela nao criada");
+            }
             tabela->removerAresta(vertice1, vertice2);
         }
     }catch(QString& e){
