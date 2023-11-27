@@ -21,6 +21,17 @@ Grafo::Grafo(const int &n_vertices) :   n_vertices(0),
     }
 }
 
+void Grafo::setPeso(const int& vertice1, const int& vertice2){
+    if ((vertice1 < 0 || vertice1 >= n_vertices) || (vertice2 < 0 || vertice2 >= n_vertices)){
+        throw QString("Vertice nao existe");
+    }
+    NO<NoGrafo> *nografo = lista[vertice1]->acessarInicio();
+    for (int i = 0; i < lista[vertice1]->getQuantidadeElementos(); ++i){
+        nografo = nografo->getProximo();
+    }
+}
+int getPeso(const int& vertice1, const int& vertice2);
+
 int Grafo::getNVertices()const{
     return n_vertices;
 }

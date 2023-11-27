@@ -14,7 +14,7 @@ public:
     Grafo();
     Grafo(const int& n_vertices);
     void setPeso(const int& vertice1, const int& vertice2);
-    NoGrafo getNoGrafo()const;
+    int getPeso(const int& vertice1, const int& vertice2);
     int getNVertices()const;
     ~Grafo();
 };
