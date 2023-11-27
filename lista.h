@@ -177,7 +177,7 @@ public:
         }
     }
 
-    L acessarPosicao(const int &posicao) const
+    L* acessarPosicao(const int &posicao) const
     {
         if (posicao < 0 || posicao >= quantidadeElementos)
         {
