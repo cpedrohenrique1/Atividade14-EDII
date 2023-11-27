@@ -21,19 +21,39 @@ Grafo::Grafo(const int &n_vertices) :   n_vertices(0),
     }
 }
 
-void Grafo::setPeso(const int& vertice1, const int& vertice2, const int& peso){
+NoGrafo* Grafo::getNoExistente(int vertice1, int vertice2){
+    --vertice1;
+    --vertice2;
     if ((vertice1 < 0 || vertice1 >= n_vertices) || (vertice2 < 0 || vertice2 >= n_vertices)){
         throw QString("Vertice nao existe");
     }
-    NO<NoGrafo> *nografo = lista[vertice1]->acessarInicio();
+    NO<NoGrafo> *iterator = lista[vertice1]->acessarInicio();
     for (int i = 0; i < lista[vertice1]->getQuantidadeElementos(); ++i){
-        if (nografo->getDado().getVertice() == vertice1){
-            nografo->getDado().setPeso(peso);
-            break;
+        if (iterator->getDado().getVertice() == vertice2){
+            return &iterator->getDado();
         }
+        iterator = iterator->getProximo();
     }
+    return 0;
 }
-int getPeso(const int& vertice1, const int& vertice2);
+
+void Grafo::setPeso(const int& vertice1, const int& vertice2, const int& peso){
+    if ((vertice1 < 0 || vertice1 > n_vertices) || (vertice2 < 0 || vertice2 > n_vertices)){
+        throw QString("Vertice nao existe");
+    }
+    if (peso < 0){
+        throw QString("Peso nao pode ser < 0");
+    }
+    NoGrafo* no = getNoExistente(vertice1, vertice2);
+    if (no){
+        no->setPeso(peso);
+        no = getNoExistente(vertice2, vertice1);
+        no->setPeso(peso);
+        return;
+    }
+    lista[vertice1]->inserirInicio(NoGrafo(vertice2, peso));
+    lista[vertice2]->inserirInicio(NoGrafo(vertice1, peso));
+}
 
 int Grafo::getNVertices()const{
     return n_vertices;

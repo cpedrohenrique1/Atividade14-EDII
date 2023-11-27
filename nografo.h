@@ -10,7 +10,7 @@ private:
     int peso;
 public:
     NoGrafo();
-    NoGrafo(const int& vertice, const int& peso);
+    NoGrafo(int vertice, const int& peso);
     int getPeso()const;
     void setPeso(const int& peso);
     int getVertice()const;
