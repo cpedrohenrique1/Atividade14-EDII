@@ -35,12 +35,11 @@ NoGrafo *Grafo::getNoExistente(int vertice1, int vertice2)
     {
         throw QString("Vertice nao existe");
     }
-    NO<NoGrafo> *iterator = lista[vertice1]->acessarInicio();
     for (int i = 0; i < lista[vertice1]->getQuantidadeElementos(); ++i)
     {
-        if (iterator->getDado()->getVertice() == vertice2)
+        if (lista[vertice1]->acessarPosicao(i).getVertice() == vertice2)
         {
-            return iterator->getDado();
+            return lista[vertice1]->acessarPosicao(i);
         }
         iterator = iterator->getProximo();
     }
@@ -49,7 +48,7 @@ NoGrafo *Grafo::getNoExistente(int vertice1, int vertice2)
 
 void Grafo::setAresta(const int &vertice1, const int &vertice2, const int &peso)
 {
-    if ((vertice1 - 1 < 0 || vertice1 - 1 > n_vertices) || (vertice2 - 1 < 0 || vertice2 - 1 > n_vertices))
+    if ((vertice1 < 0 || vertice1 > n_vertices) || (vertice2 < 0 || vertice2 > n_vertices))
     {
         throw QString("Vertice nao existe");
     }
@@ -72,7 +71,7 @@ void Grafo::setAresta(const int &vertice1, const int &vertice2, const int &peso)
 void Grafo::removerAresta(int vertice1, int vertice2){
     --vertice1;
     --vertice2;
-    if ((vertice1 < 0 || vertice1 > n_vertices) || (vertice2 < 0 || vertice2 > n_vertices))
+    if ((vertice1 < 0 || vertice1 >= n_vertices) || (vertice2 < 0 || vertice2 >= n_vertices))
     {
         throw QString("Vertice nao existe");
     }
@@ -89,7 +88,7 @@ void Grafo::removerAresta(int vertice1, int vertice2){
     no = lista[vertice2]->acessarInicio();
     for (int i = 0; i < lista[vertice2]->getQuantidadeElementos(); ++i)
     {
-        if (no->getDado()->getVertice() == vertice1)
+        if (no->getDado().getVertice() == vertice1)
         {
             lista[vertice2]->retirarPosicao(i);
             break;
