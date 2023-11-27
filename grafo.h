@@ -2,19 +2,18 @@
 #define GRAFO_H
 
 #include <QString>
+#include "lista.h"
+#include "nografo.h"
 
 class Grafo
 {
 private:
-    int vertice;
-    int peso;
+    Lista<NoGrafo> **lista;
+    int n_vertices;
 public:
     Grafo();
-    Grafo(const int& vertice, const int& peso);
-    int getPeso()const;
-    void setPeso(const int& peso);
-    int getVertice()const;
-    void setVertice(const int& vertice);
+    Grafo(const int& n_vertices);
+    ~Grafo();
 };
 
 #endif // GRAFO_H

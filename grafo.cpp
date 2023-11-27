@@ -1,43 +1,35 @@
 #include "grafo.h"
 
-Grafo::Grafo() : peso(0),
-                 vertice(0)
+Grafo::Grafo() :    n_vertices(0),
+                    lista(0)
+{}
+Grafo::Grafo(const int &n_vertices) :   n_vertices(0),
+                                        lista(0)
 {
-}
-Grafo::Grafo(const int &vertice, const int &peso)
-{
-    if (peso < 0)
+    if (n_vertices <= 0)
     {
-        throw QString("peso nao pode ser < 0");
+        throw QString("vertice nao pode ser <= 0");
     }
-    if (vertice < 0)
-    {
-        throw QString("vertice nao pode ser < 0");
+    this->n_vertices = n_vertices;
+    try{
+        lista = new Lista<NoGrafo>*[n_vertices];
+        for (int i = 0; i < n_vertices; ++i){
+            lista[i] = new Lista<NoGrafo>;
+        }
+    }catch(std::bad_alloc& e){
+        throw QString("Nao foi possivel alocar memoria");
     }
-    this->peso = peso;
-    this->vertice = vertice;
 }
-int Grafo::getPeso() const
-{
-    return peso;
-}
-void Grafo::setPeso(const int &peso)
-{
-    if (peso < 0)
-    {
-        throw QString("peso nao pode ser < 0");
+
+Grafo::~Grafo(){
+    if (lista){
+        for (int i = 0; i < n_vertices; ++i){
+            if (lista[i]){
+                delete lista[i];
+                lista[i] = 0;
+            }
+        }
+        delete[] lista;
+        lista = 0;
     }
-    this->peso = peso;
-}
-int Grafo::getVertice() const
-{
-    return vertice;
-}
-void Grafo::setVertice(const int &vertice)
-{
-    if (vertice < 0)
-    {
-        throw QString("vertice nao pode ser < 0");
-    }
-    this->vertice = vertice;
 }

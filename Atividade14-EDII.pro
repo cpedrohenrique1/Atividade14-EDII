@@ -12,6 +12,7 @@ SOURCES += \
     grafo.cpp \
     main.cpp \
     mainwindow.cpp \
+    nografo.cpp \
     tabela.cpp
 
 HEADERS += \
@@ -19,6 +20,7 @@ HEADERS += \
     lista.h \
     mainwindow.h \
     no.h \
+    nografo.h \
     tabela.h \
     tabhash.h
 
