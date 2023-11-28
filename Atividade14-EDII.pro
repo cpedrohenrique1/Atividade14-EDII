@@ -21,8 +21,7 @@ HEADERS += \
     mainwindow.h \
     no.h \
     nografo.h \
-    tabela.h \
-    tabhash.h
+    tabela.h
 
 FORMS += \
     mainwindow.ui

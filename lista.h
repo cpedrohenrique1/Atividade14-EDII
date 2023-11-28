@@ -67,15 +67,14 @@ public:
             throw QString("Lista ja vazia, nao foi possivel retirar");
         }
         NO<L> *aux = inicio;
+        L valor = inicio->getDado();
         if (quantidadeElementos == 1)
         {
             quantidadeElementos = 0;
             inicio = fim = 0;
-            L valor = aux->getDado();
             delete aux;
             return valor;
         }
-        L valor = inicio->getDado();
         inicio = inicio->getProximo();
         inicio->setAnterior(0);
         delete aux;
@@ -87,8 +86,7 @@ public:
     {
         if (estaVazia())
         {
-            inserirInicio(entrada);
-            return;
+            return inserirInicio(entrada);
         }
         try
         {
@@ -134,15 +132,13 @@ public:
         {
             throw QString("Posicao invalida, nao pode ser menor que 0 ou maior que a quantidade de elementos");
         }
-        if (posicao == 0 || estaVazia())
+        if (posicao == 0)
         {
-            inserirInicio(entrada);
-            return;
+            return inserirInicio(entrada);
         }
         if (posicao == quantidadeElementos)
         {
-            inserirFim(entrada);
-            return;
+            return inserirFim(entrada);
         }
         try
         {

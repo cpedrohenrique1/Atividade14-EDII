@@ -38,8 +38,9 @@ void Tabela::start()
 {
     if (!tabela)
         throw QString("tabela nao localizada {start}");
+    tabela->setRowCount(grafo->getNVertices());
+    tabela->setColumnCount(grafo->getNVertices());
     tabela->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    // tabela->verticalHeader()->setVisible(false);
     tabela->horizontalHeader()->setVisible(false);
 }
 
@@ -62,15 +63,13 @@ void Tabela::atualizar()
         throw QString("grafo nao localizado {atualizar}");
 
     limpar();
-    tabela->setRowCount(grafo->getNVertices());
-    tabela->setColumnCount(grafo->getNVertices());
+    Lista<NoGrafo> **lista = grafo->getLista();
     for (int i = 0; i < grafo->getNVertices(); ++i){
-        for (int j = 0; j < grafo->getLista()[i]->getQuantidadeElementos(); ++j){
-            NoGrafo no = grafo->getLista()[i]->acessarPosicao(j);
+        for (int j = 0; j < lista[i]->getQuantidadeElementos(); ++j){
+            NoGrafo no = lista[i]->acessarPosicao(j);
             tabela->setItem(i, j, new QTableWidgetItem(QString::number(no.getVertice()) + " | " + QString::number(no.getPeso())));
         }
     }
-    
 }
 
 void Tabela::inserirAresta(const int &vertice1, const int& vertice2, const int &peso){

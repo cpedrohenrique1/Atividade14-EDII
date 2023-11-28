@@ -10,7 +10,7 @@ NoGrafo::NoGrafo(const int &vertice, const int &peso) : vertice(0),
 {
     if (vertice <= 0)
     {
-        throw QString("Vertice negativo");
+        throw QString("Vertice invalido");
     }
     if (peso < 0)
     {
@@ -37,7 +37,7 @@ int NoGrafo::getVertice() const
 }
 void NoGrafo::setVertice(const int &vertice)
 {
-    if (vertice < 0)
+    if (vertice <= 0)
     {
         throw QString("Vertice negativo");
     }
