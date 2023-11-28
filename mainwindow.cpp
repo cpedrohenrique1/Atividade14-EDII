@@ -6,6 +6,16 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    tabela = new Tabela(ui->tableWidget, 6);
+    tabela->inserirAresta(1, 2, 10);
+    tabela->inserirAresta(1, 3, 15);
+    tabela->inserirAresta(1, 4, 5);
+    tabela->inserirAresta(2, 4, 20);
+    tabela->inserirAresta(2, 3, 10);
+    tabela->inserirAresta(2, 6, 10);
+    tabela->inserirAresta(3, 5, 5);
+    tabela->inserirAresta(4, 6, 25);
+    tabela->atualizar();
 }
 
 MainWindow::~MainWindow()
@@ -23,6 +33,7 @@ void MainWindow::on_pushButton_criar_clicked()
     if (ok){
         try{
             tabela = new Tabela(ui->tableWidget, n_vertices);
+            tabela->atualizar();
         }catch(QString& e){
             QMessageBox::critical(this, "Erro", e);
         }
