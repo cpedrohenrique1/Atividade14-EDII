@@ -40,6 +40,9 @@ void Grafo::inserirAresta(const int &vertice1, const int &vertice2, const int &p
     {
         throw QString("Peso nao pode ser < 0");
     }
+    if (!lista){
+        throw QString("Lista nao criada");
+    }
     for (int i = 0; i < lista[vertice1 - 1]->getQuantidadeElementos(); ++i)
     {
         if (lista[vertice1 - 1]->acessarPosicao(i).getVertice() == vertice2)
@@ -63,6 +66,9 @@ void Grafo::setAresta(const int &vertice1, const int &vertice2, const int &peso)
     if (peso < 0)
     {
         throw QString("Peso nao pode ser < 0");
+    }
+    if (!lista){
+        throw QString("Lista nao criada");
     }
     for (int i = 0; i < lista[vertice1 - 1]->getQuantidadeElementos(); ++i)
     {
@@ -92,6 +98,9 @@ void Grafo::removerAresta(const int& vertice1, const int& vertice2)
     }
     if (vertice1 == vertice2){
         throw QString("Vertice nao pode ser igual");
+    }
+    if (!lista){
+        throw QString("Lista nao criada");
     }
     for (int i = 0; i < lista[vertice1 - 1]->getQuantidadeElementos(); ++i)
     {

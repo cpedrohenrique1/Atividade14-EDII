@@ -36,6 +36,9 @@ Tabela::~Tabela()
 
 void Tabela::start()
 {
+    if (!grafo){
+        throw QString("Grafo nao criado");
+    }
     if (!tabela)
         throw QString("tabela nao localizada {start}");
     tabela->setRowCount(grafo->getNVertices());
@@ -73,14 +76,23 @@ void Tabela::atualizar()
 }
 
 void Tabela::inserirAresta(const int &vertice1, const int& vertice2, const int &peso){
+    if (!grafo){
+        throw QString("Grafo nao criado");
+    }
     grafo->inserirAresta(vertice1, vertice2, peso);
     atualizar();
 }
 void Tabela::alterarAresta(const int &vertice1, const int& vertice2, const int &peso){
+    if (!grafo){
+        throw QString("Grafo nao criado");
+    }
     grafo->setAresta(vertice1, vertice2, peso);
     atualizar();
 }
 void Tabela::removerAresta(const int &vertice1, const int& vertice2){
+    if (!grafo){
+        throw QString("Grafo nao criado");
+    }
     grafo->removerAresta(vertice1, vertice2);
     atualizar();
 }
