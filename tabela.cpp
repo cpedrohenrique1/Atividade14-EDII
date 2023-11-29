@@ -15,7 +15,7 @@ Tabela::Tabela(QTableWidget *parent, const int &tamanho) : tabela(0),
     this->tabela = parent;
     try
     {
-        grafo = new Grafo(tamanho);
+        grafo = new Grafo<int>(tamanho);
     }
     catch (const std::bad_alloc &e)
     {
@@ -63,7 +63,7 @@ void Tabela::atualizar()
     limpar();
     for (int i = 0; i < grafo->getNVertices(); ++i){
         for (int j = 0; j < grafo->getTamanhoLista(i); ++j){
-            NoGrafo no = grafo->getNOGrafo(i, j);
+            NoGrafo<int> no = grafo->getNOGrafo(i, j);
             tabela->setItem(i, j, new QTableWidgetItem(QString::number(no.getVertice()) + " | " + QString::number(no.getPeso())));
         }
     }

@@ -9,7 +9,7 @@ class Tabela
 {
 private:
     QTableWidget *tabela;
-    Grafo *grafo;
+    Grafo<int> *grafo;
 
 public:
     Tabela();

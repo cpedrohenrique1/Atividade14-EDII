@@ -3,18 +3,48 @@
 
 #include <QString>
 
+template <class TYPE>
 class NoGrafo
 {
 private:
     int vertice;
-    int peso;
+    TYPE peso;
+
 public:
-    NoGrafo();
-    NoGrafo(const int& vertice, const int& peso);
-    int getPeso()const;
-    void setPeso(const int& peso);
-    int getVertice()const;
-    void setVertice(const int& vertice);
+    NoGrafo() : vertice(0),
+                peso()
+    {
+    }
+    NoGrafo(const int &vertice, const int &peso) : vertice(0),
+                                                   peso()
+    {
+        if (vertice <= 0)
+        {
+            throw QString("Vertice invalido");
+        }
+        this->peso = peso;
+        this->vertice = vertice;
+    }
+    TYPE getPeso() const
+    {
+        return peso;
+    }
+    void setPeso(const TYPE &peso)
+    {
+        this->peso = peso;
+    }
+    int getVertice() const
+    {
+        return vertice;
+    }
+    void setVertice(const int &vertice)
+    {
+        if (vertice <= 0)
+        {
+            throw QString("Vertice negativo");
+        }
+        this->vertice = vertice;
+    }
 };
 
 #endif // NOGRAFO_H
