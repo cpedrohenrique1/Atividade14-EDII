@@ -107,6 +107,7 @@ void Grafo::removerAresta(const int& vertice1, const int& vertice2)
         if (lista[vertice1 - 1]->acessarPosicao(i).getVertice() == vertice2)
         {
             lista[vertice1 - 1]->retirarPosicao(i);
+            break;
         }
     }
     for (int i = 0; i < lista[vertice2 - 1]->getQuantidadeElementos(); ++i)
@@ -114,6 +115,7 @@ void Grafo::removerAresta(const int& vertice1, const int& vertice2)
         if (lista[vertice2 - 1]->acessarPosicao(i).getVertice() == vertice1)
         {
             lista[vertice2 - 1]->retirarPosicao(i);
+            break;
         }
     }
 }
