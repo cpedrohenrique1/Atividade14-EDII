@@ -21,7 +21,6 @@ public:
     void inserirAresta(const int &vertice1, const int& vertice2, const int &peso);
     void alterarAresta(const int &vertice1, const int& vertice2, const int &peso);
     void removerAresta(const int &vertice1, const int& vertice2);
-    Grafo *getVetor() const;
 };
 
 #endif // TABELA_H

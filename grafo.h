@@ -17,7 +17,8 @@ public:
     void setAresta(const int& vertice1, const int& vertice2, const int& peso);
     int getNVertices()const;
     void removerAresta(const int& vertice1, const int& vertice2);
-    Lista<NoGrafo>** getLista()const;
+    NoGrafo getNOGrafo(const int& indice, const int& j)const;
+    int getTamanhoLista(const int& vertice)const;
     ~Grafo();
 };
 

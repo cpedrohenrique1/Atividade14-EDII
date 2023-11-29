@@ -23,11 +23,6 @@ Tabela::Tabela(QTableWidget *parent, const int &tamanho) : tabela(0),
     }
 }
 
-Grafo *Tabela::getVetor() const
-{
-    return grafo;
-}
-
 Tabela::~Tabela()
 {
     if (grafo)
@@ -66,10 +61,9 @@ void Tabela::atualizar()
         throw QString("grafo nao localizado {atualizar}");
 
     limpar();
-    Lista<NoGrafo> **lista = grafo->getLista();
     for (int i = 0; i < grafo->getNVertices(); ++i){
-        for (int j = 0; j < lista[i]->getQuantidadeElementos(); ++j){
-            NoGrafo no = lista[i]->acessarPosicao(j);
+        for (int j = 0; j < grafo->getTamanhoLista(i); ++j){
+            NoGrafo no = grafo->getNOGrafo(i, j);
             tabela->setItem(i, j, new QTableWidgetItem(QString::number(no.getVertice()) + " | " + QString::number(no.getPeso())));
         }
     }

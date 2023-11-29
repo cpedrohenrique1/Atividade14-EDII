@@ -123,9 +123,18 @@ int Grafo::getNVertices() const
     return n_vertices;
 }
 
-Lista<NoGrafo> **Grafo::getLista() const
-{
-    return lista;
+NoGrafo Grafo::getNOGrafo(const int& indice, const int& j)const{
+    if (indice < 0 || indice > n_vertices){
+        throw QString("indice invalido");
+    }
+    return lista[indice]->acessarPosicao(j);
+}
+
+int Grafo::getTamanhoLista(const int& vertice)const{
+    if (vertice < 0 || vertice > n_vertices){
+        throw QString("indice invalido");
+    }
+    return lista[vertice]->getQuantidadeElementos();
 }
 
 Grafo::~Grafo()
