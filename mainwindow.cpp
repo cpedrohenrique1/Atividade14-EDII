@@ -40,6 +40,9 @@ void MainWindow::on_pushButton_criar_clicked()
     int n_vertices = ui->lineEdit_vertices->text().toInt(&ok);
     if (ok){
         try{
+            if (n_vertices <= 0){
+                throw QString("n° vertices invalido");
+            }
             if (tabela){
                 delete tabela;
                 tabela = 0;
